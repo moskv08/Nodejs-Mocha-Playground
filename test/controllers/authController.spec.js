@@ -2,27 +2,34 @@ const assert = require('assert');
 const authController = require('../../controllers/authController');
 
 describe('AuthController', function () {
+
+    beforeEach('setting user roles', function () {
+        console.log('Running before each test');
+        // Arrange
+        authController.setRoles(['user', 'tester']);
+    });
+
     describe('isAuthorized', function () {
         it('should return false if not authorized', function () {
-            const role = 'admin'
-            const roles = ['user'];
-            const expected = authController.isAuthorized(roles, role);
+            // Act
+            const expected = authController.isAuthorized('admin');
+            // Assert
             assert.equal(false, expected);
         });
 
         it('should return true if authorized', function () {
-            const role = 'admin'
-            const roles = ['user', 'admin'];
-            const expected = authController.isAuthorized(roles, role);
+            // Act
+            const expected = authController.isAuthorized('tester');
+            // Assert
             assert.equal(true, expected);
         });
     });
 
     describe('isAuthorizedAsync', function () {
         it('should return false if not authorized', function (done) {
-            const role = 'admin'
-            const roles = ['user'];
-            authController.isAuthorizedAsync(roles, role, function (isAuth) {
+            // Act
+            authController.isAuthorizedAsync('admin', function (isAuth) {
+                // Assert
                 assert.equal(false, isAuth);
                 done();
             });
