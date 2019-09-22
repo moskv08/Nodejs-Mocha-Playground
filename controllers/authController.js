@@ -1,21 +1,38 @@
 function AuthController() {
 
     let roles;
+    let user;
 
     function setRoles(role) {
         roles = role;
+        user.roles = role;
+    }
+
+    function setUser(inUser) {
+        user = inUser;
     }
 
     function isAuthorized(neededRole) {
-        return roles.indexOf(neededRole) >= 0;
+        if (user) {
+            return user.isAuthorized(neededRole);
+        }
     }
 
-    function isAuthorizedAsync(neededRole, callback) {
+    function isAuthorizedCallback(neededRole, callback) {
         setTimeout(function () {
             callback(roles.indexOf(neededRole) >= 0)
-        }, 2500)
+        }, 500)
     }
-    return { isAuthorized, isAuthorizedAsync, setRoles }
+
+    function isAuthorizedPromise(neededRole, callback) {
+        return new Promise(function (resolve) {
+            setTimeout(function () {
+                resolve(roles.indexOf(neededRole) >= 0)
+            }, 500)
+        });
+
+    }
+    return { isAuthorized, isAuthorizedCallback, isAuthorizedPromise, setRoles, setUser }
 }
 
 module.exports = AuthController();
