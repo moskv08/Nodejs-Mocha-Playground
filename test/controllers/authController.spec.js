@@ -1,4 +1,7 @@
 const assert = require('assert');
+const { expect } = require('chai');
+const should = require('chai').should();
+
 const authController = require('../../controllers/authController');
 
 describe('AuthController', function () {
@@ -11,22 +14,18 @@ describe('AuthController', function () {
 
     describe('isAuthorized', function () {
         it('should return false if not authorized', function () {
-            // Act
-            const expected = authController.isAuthorized('admin');
-            // Assert
-            assert.equal(false, expected);
+            const isAuth = authController.isAuthorized('admin');
+            expect(isAuth).to.be.false;
         });
 
         it('should return true if authorized', function () {
-            // Act
-            const expected = authController.isAuthorized('tester');
-            // Assert
-            assert.equal(true, expected);
+            const isAuth = authController.isAuthorized('tester');
+            isAuth.should.be.true;
         });
     });
 
     describe('isAuthorizedAsync', function () {
-        it('should return false if not authorized', function (done) {
+        it.skip('should return false if not authorized', function (done) {
             // Act
             authController.isAuthorizedAsync('admin', function (isAuth) {
                 // Assert
