@@ -1,5 +1,7 @@
 # Testing Node.js with Mocha
 
+![image](mocha-chai-cover.png)
+
 ### Testing with Mocha  
   
 - Mocha as a test runner
