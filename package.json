@@ -9,6 +9,8 @@
   "author": "Fabrizio Zihlmann",
   "license": "MIT",
   "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-as-promised": "^7.1.1",
     "mocha": "^6.2.0"
   }
 }
