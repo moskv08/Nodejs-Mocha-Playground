@@ -26,17 +26,21 @@ describe('BookController', function () {
             }
         });
 
-        it('should render profile once if user is authorized', function () {
+        it.only('should render profile once if user is authorized', function () {
             // Stub isAuhtorized function
             const isAuth = sinon.stub(user, 'isAuthorized').returns(true);
             const req = { user };
-            const res = { render: sinon.spy() };
+            const res = { render: function () { } };
 
+            // Wrap object with mock
+            const mock = sinon.mock(res);
+            mock.expects('render').once().withExactArgs('profile')
+
+            // Act
             bookController.getIndex(req, res);
-
             isAuth.calledOnce.should.be.true;
-            res.render.firstCall.args[0].should.equal('profile');
-            res.render.calledOnce.should.be.true;
+
+            mock.verify();
         });
 
         it('should render index once if user was not authorized', function () {
