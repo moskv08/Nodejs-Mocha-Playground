@@ -19,5 +19,6 @@
 
 ### Spy, Stubs and Mocks with Sinon
 
-
+Sinon.stub is going to take a function and replace it with a own one.
+This allows to do real unit testing.
 
