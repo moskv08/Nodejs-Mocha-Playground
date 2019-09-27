@@ -3,6 +3,7 @@ const { expect } = require('chai');
 const should = require('chai').should();
 const chai = require('chai');
 const chaiAsPromised = require('chai-as-promised');
+const sinon = require('sinon');
 
 const authController = require('../../controllers/authController');
 
@@ -28,11 +29,13 @@ describe('AuthController', function () {
                     return this.roles.indexOf(neededRole) >= 0;
                 }
             }
+            sinon.spy(user, 'isAuthorized');
             authController.setUser(user);
         });
 
         it('should return false if not authorized', function () {
             const isAuth = authController.isAuthorized('admin');
+            user.isAuthorized.calledOnce.should.be.true;
             expect(isAuth).to.be.false;
         });
 
