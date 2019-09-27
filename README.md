@@ -19,6 +19,10 @@
 
 ### Spy, Stubs and Mocks with Sinon
 
-Sinon.stub is going to take a function and replace it with a own one.
-This allows to do real unit testing.
+**Sinon.spy** makes sure a function is called by watching it. 
+
+**Sinon.stub** is going to take a function and replace it with a own one.
+Replacing objects allows to do real _unit_ testing.
+
+**Sinon.mocks** are fake methods (spy), pre-programmed behavior (stubs) and pre-programmed expectations. So mocks allow to wrap all behavior together.
 
