@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha './test/**/*.spec.js'"
+    "test": "mocha './test/**/*.spec.js'",
+    "cover": "istanbul cover node_modules/.bin/_mocha -- tests/**/*"
   },
   "author": "Fabrizio Zihlmann",
   "license": "MIT",

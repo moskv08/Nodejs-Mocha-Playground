@@ -26,3 +26,6 @@ Replacing objects allows to do real _unit_ testing.
 
 **Sinon.mocks** are fake methods (spy), pre-programmed behavior (stubs) and pre-programmed expectations. So mocks allow to wrap all behavior together.
 
+Use the **Rewire** module for changing an object.
+
+The **Istanbul** module shows you in kind of a report what you missed and how your code coverage looks like.
